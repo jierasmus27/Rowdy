@@ -13,6 +13,9 @@ class Venue(Base):
         back_populates="venue",
         cascade="all, delete-orphan",
     )
+    events: Mapped[list["Event"]] = relationship(
+        back_populates="venue",
+    )
 
 class VenueConfiguration(Base):
     __tablename__ = "venue_configurations"
