@@ -41,14 +41,10 @@ target_metadata = Base.metadata
 
 def include_name(name, type_, parent_names):
     if type_ == "schema":
-        return name in {"rowdy"}
+        return name == "rowdy"
 
-    return True
-
-
-def include_object(object, name, type_, reflected, compare_to):
-    if reflected and compare_to is None:
-        return False
+    if type_ == "table":
+        return parent_names.get("schema_name") == "rowdy"
 
     return True
 
@@ -73,7 +69,6 @@ def run_migrations_offline() -> None:
         dialect_opts={"paramstyle": "named"},
         include_schemas=True,
         include_name=include_name,
-        include_object=include_object,
         compare_type=True,
     )
 
@@ -100,7 +95,6 @@ def run_migrations_online() -> None:
             target_metadata=target_metadata,
             include_schemas=True,
             include_name=include_name,
-            include_object=include_object,
             compare_type=True,
         )
 
