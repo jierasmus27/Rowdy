@@ -12,6 +12,7 @@ class Event(Base):
     organisation_id: Mapped[int] = mapped_column(
         ForeignKey("rowdy.organisations.id"),
         nullable=False,
+        index=True,
     )
     organisation: Mapped["Organisation"] = relationship(
         back_populates="events",
@@ -20,6 +21,7 @@ class Event(Base):
     venue_id: Mapped[int] = mapped_column(
         ForeignKey("rowdy.venues.id"),
         nullable=False,
+        index=True,
     )
     venue: Mapped["Venue"] = relationship(
         back_populates="events",

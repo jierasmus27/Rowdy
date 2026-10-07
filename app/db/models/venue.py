@@ -24,6 +24,7 @@ class VenueConfiguration(Base):
     venue_id: Mapped[int] = mapped_column(
         ForeignKey("rowdy.venues.id"),
         nullable=False,
+        index=True,
     )
     name: Mapped[str] = mapped_column(String(255), nullable=False)
 
